@@ -90,11 +90,11 @@ class ActionResponse(object):
                     ),
                     MessageAction(
                         label='我身體不適怎麼辦?',
-                        text='處理狀況 身體不適'.format(city, sick)
+                        text='處理狀況 身體不適'
                     ),
                     MessageAction(
                         label='我需要視訊看診怎麼辦?',
-                        text='處理狀況 視訊看診'.format(city, sick)
+                        text='處理狀況 視訊看診'
                     )
                 ]
             )
@@ -146,6 +146,9 @@ def generate_act_message(status, city=None, sick=None):
             messages.append(text_message)
         elif status == "身體不適":
             text_message = TextSendMessage(text="""根據台北市防役專區：\n1. 大部分的 COVID-19 感染者症狀輕微，休養後即可自行康復，在居家照護期間，請補充水分、盡量臥床休息，並務必觀察自身症狀變化。\n2. 若您出現以下症狀時，請立即撥打 119 就醫或同住親友接送：喘、呼吸困難、持續胸痛、胸悶、意識不清、皮膚或嘴唇或指甲床發青、無法進食、喝水或服藥、過去24小時無尿或尿量顯著減少。""")
+            messages.append(text_message)
+        elif status == "解隔陽性":
+            text_message = TextSendMessage(text="""根據指揮中心，經過七天隔離期滿不需要再進行快篩即可進入自主健康管理期間，解隔快篩陽性有可能為病毒屍體，且根據研究七天已幾乎無傳染力，但仍須自主健康管理期滿才能進行聚會，或是出入人口密集處""")
             messages.append(text_message)
     else:
         if status == "PCR篩檢":
