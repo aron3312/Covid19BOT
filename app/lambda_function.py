@@ -27,11 +27,6 @@ user_rec = client.Table('user_record')
 tz = timedelta(hours=8)
 line_bot_api = LineBotApi(os.environ['Channel_access_token'])
 handler = WebhookHandler(os.environ['Channel_secret'])
-image_urls = ["https://drive.google.com/uc?export=view&id=1hVW0Nmw6r8czjTuP5PbXkQGy0K_BKSst",
-              "https://drive.google.com/uc?export=view&id=1FoCmTRHuiBoDaQZU7FlAh1ml7XBfv59-",
-              "https://drive.google.com/uc?export=view&id=10nUQuJxIdNUC5bLo1ltnxmnpuYmQDalK",
-              "https://drive.google.com/uc?export=view&id=1oE8giH-E5yuepe9Xm8x8bRRTvIbUOsiN",
-              "https://drive.google.com/uc?export=view&id=1fiIGSTCiToIzf6aSxL-XibbYTv7f6gu6", ]
 
 
 def lambda_handler(event, context):

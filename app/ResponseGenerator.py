@@ -3,6 +3,12 @@ from linebot.models import (
     TemplateSendMessage, ButtonsTemplate, CarouselTemplate,
     ImageCarouselTemplate, ImageCarouselTemplate, CarouselColumn, URIAction, PostbackAction, PostbackTemplateAction, MessageAction, ImageCarouselColumn
 )
+image_urls = ["https://drive.google.com/uc?export=view&id=1hVW0Nmw6r8czjTuP5PbXkQGy0K_BKSst",
+              "https://drive.google.com/uc?export=view&id=1FoCmTRHuiBoDaQZU7FlAh1ml7XBfv59-",
+              "https://drive.google.com/uc?export=view&id=10nUQuJxIdNUC5bLo1ltnxmnpuYmQDalK",
+              "https://drive.google.com/uc?export=view&id=1oE8giH-E5yuepe9Xm8x8bRRTvIbUOsiN",
+              "https://drive.google.com/uc?export=view&id=1fiIGSTCiToIzf6aSxL-XibbYTv7f6gu6", ]
+
 
 teach_message = [TemplateSendMessage(
     alt_text='查詢最近藥局販售快篩試劑',
@@ -83,6 +89,10 @@ class ActionResponse(object):
                         text='處理狀況 PCR篩檢 {} {}'.format(city, sick)
                     ),
                     MessageAction(
+                        label='我身體不適怎麼辦?',
+                        text='處理狀況 身體不適'.format(city, sick)
+                    ),
+                    MessageAction(
                         label='我需要視訊看診怎麼辦?',
                         text='處理狀況 視訊看診'.format(city, sick)
                     )
@@ -133,6 +143,9 @@ def generate_act_message(status, city=None, sick=None):
             messages.append(text_message)
         elif status == "視訊看診":
             text_message = TextSendMessage(text="若需要視訊看診，目前主要有兩種方式：\n（一）地區配合的醫療院所\n（二）健康益友APP\n另外「健保快易通」APP可以先準備，裡面可以進行虛擬健保卡註冊以及視訊院所查詢。\n簡單講一下視訊看診主要是為了應急的看診及拿藥，另外健康益友APP以及醫院會提供視訊陽性門診，可以透過視訊判斷陽性及給藥，除此之外就是一般的就醫改成視訊進行\n這邊提供您小建議，若想要拿急用的感冒藥或是看診，也可以考慮致電給附近的診所，詢問他是否可以視訊約診，後面再請人拿健保卡去拿藥即可\n除此之外正規流程可以參考這個頁面：https://www.cool3c.com/article/177445")
+            messages.append(text_message)
+        elif status == "身體不適":
+            text_message = TextSendMessage(text="""根據台北市防役專區：\n1. 大部分的 COVID-19 感染者症狀輕微，休養後即可自行康復，在居家照護期間，請補充水分、盡量臥床休息，並務必觀察自身症狀變化。\n2. 若您出現以下症狀時，請立即撥打 119 就醫或同住親友接送：喘、呼吸困難、持續胸痛、胸悶、意識不清、皮膚或嘴唇或指甲床發青、無法進食、喝水或服藥、過去24小時無尿或尿量顯著減少。""")
             messages.append(text_message)
     else:
         if status == "PCR篩檢":
